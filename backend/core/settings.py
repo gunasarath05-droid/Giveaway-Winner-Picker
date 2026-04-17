@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,6 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
@@ -135,3 +139,29 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+JAZMIN_SETTINGS = {
+    "site_title": "Giveaway Admin",
+    "site_header": "Giveaway Picker",
+    "site_brand": "ReelAnalyzer",
+    "welcome_sign": "Welcome to Giveaway-Winner-Picker Admin",
+    "copyright": "ReelAnalyzer Ltd",
+    "search_model": ["auth.User", "authentication.InstagramProfile"],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "authentication.InstagramProfile": "fab fa-instagram",
+        "reels.Reel": "fas fa-video",
+        "comments.Comment": "fas fa-comments",
+    },
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "View Site", "url": "https://giveaway-winner-picker.vercel.app", "new_window": True},
+    ],
+    "order_with_respect_to": ["authentication", "reels", "comments", "auth"],
+    "theme": "flatly",
+    "dark_mode_theme": "darkly",
+}
