@@ -33,7 +33,8 @@ class InstagramCallbackView(APIView):
         
         code = request.GET.get('code')
         if not code:
-            return redirect("http://localhost:3000/login?error=" + urllib.parse.quote("No code provided from Facebook"))
+            frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+            return redirect(f"{frontend_url}/login?error=" + urllib.parse.quote("No code provided from Facebook"))
 
         app_id = os.getenv('INSTAGRAM_APP_ID')
         app_secret = os.getenv('INSTAGRAM_APP_SECRET')
@@ -52,7 +53,8 @@ class InstagramCallbackView(APIView):
 
         if "access_token" not in token_data:
             err_msg = token_data.get('error', {}).get('message', 'Failed to exchange token')
-            return redirect("http://localhost:3000/login?error=" + urllib.parse.quote(err_msg))
+            frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+            return redirect(f"{frontend_url}/login?error=" + urllib.parse.quote(err_msg))
 
         access_token = token_data["access_token"]
 
@@ -62,7 +64,8 @@ class InstagramCallbackView(APIView):
         me_data = me_res.json()
 
         if "data" not in me_data or not me_data["data"]:
-            return redirect("http://localhost:3000/login?error=" + urllib.parse.quote("No linked Facebook pages found or missing permissions. Make sure your account is an Admin of a Facebook Page."))
+            frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+            return redirect(f"{frontend_url}/login?error=" + urllib.parse.quote("No linked Facebook pages found or missing permissions. Make sure your account is an Admin of a Facebook Page."))
 
         # Iterate pages to find IG Business Accounts
         ig_account_id = None
@@ -77,7 +80,8 @@ class InstagramCallbackView(APIView):
                 break
         
         if not ig_account_id:
-            return redirect("http://localhost:3000/login?error=" + urllib.parse.quote("No Instagram Business account is linked to your Facebook Pages. Please link them in Facebook Settings."))
+            frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+            return redirect(f"{frontend_url}/login?error=" + urllib.parse.quote("No Instagram Business account is linked to your Facebook Pages. Please link them in Facebook Settings."))
 
         # 3. Create or update profile
         user, created = User.objects.get_or_create(username=f"ig_{ig_account_id}")
@@ -91,4 +95,5 @@ class InstagramCallbackView(APIView):
         )
 
         login(request, user)
-        return redirect("http://localhost:3000/dashboard")
+        frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+        return redirect(f"{frontend_url}/dashboard")

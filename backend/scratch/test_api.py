@@ -1,6 +1,6 @@
 import requests
 
-url = "http://127.0.0.1:8000/api/pick-comment/"
+url = "https://giveaway-winner-picker.onrender.com/api/pick-comment/"
 payload = {
     "url": "https://www.instagram.com/reel/DE-R0k0x94s/",
     "mode": "random"
