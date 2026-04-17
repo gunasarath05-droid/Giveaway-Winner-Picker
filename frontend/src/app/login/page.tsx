@@ -11,7 +11,7 @@ function LoginContent() {
   
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/auth/instagram/login/");
+      const res = await fetch("https://giveaway-winner-picker.onrender.com/auth/instagram/login/");
       const data = await res.json();
       if (data.auth_url) {
         window.location.href = data.auth_url;

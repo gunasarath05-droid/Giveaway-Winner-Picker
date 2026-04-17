@@ -46,8 +46,8 @@ export default function ReelDetailPage() {
     const fetchData = async () => {
       try {
         const [analysisRes, commentsRes] = await Promise.all([
-          fetch(`http://127.0.0.1:8000/api/analysis/${id}/`),
-          fetch(`http://127.0.0.1:8000/api/reels/comments/${id}/`)
+          fetch(`https://giveaway-winner-picker.onrender.com/api/analysis/${id}/`),
+          fetch(`https://giveaway-winner-picker.onrender.com/api/reels/comments/${id}/`)
         ]);
         
         const analysisData = await analysisRes.json();

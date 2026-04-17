@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     async function checkProfile() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/reels/stats/");
+        const res = await fetch("https://giveaway-winner-picker.onrender.com/api/reels/stats/");
         const data = await res.json();
         if (data && !data.error) {
             setProfile(data);

@@ -16,7 +16,7 @@ export default function ReelsPage() {
     const fetchReels = async () => {
       try {
         setError(null);
-        const res = await fetch("http://127.0.0.1:8000/api/reels/");
+        const res = await fetch("https://giveaway-winner-picker.onrender.com/api/reels/");
         const data = await res.json();
         
         if (Array.isArray(data)) {
