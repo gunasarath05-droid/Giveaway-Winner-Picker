@@ -7,8 +7,12 @@ django.setup()
 from django.core.management import call_command
 
 # Run migrations automatically
-print("Running migrations...")
-call_command('migrate', interactive=False)
+print("--- Starting Auto-Migrations ---")
+try:
+    call_command('migrate', interactive=False)
+    print("--- Migrations completed successfully ---")
+except Exception as e:
+    print(f"--- Migration ERROR: {str(e)} ---")
 
 from django.contrib.auth.models import User
 
