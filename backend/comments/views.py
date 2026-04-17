@@ -74,27 +74,14 @@ class PickCommentView(APIView):
 
 VERIFY_TOKEN = "insta123"
 
-@csrf_exempt
 def webhook(request):
-    if request.method == "GET":
-        mode = request.GET.get("hub.mode")
-        token = request.GET.get("hub.verify_token")
-        challenge = request.GET.get("hub.challenge")
+    mode = request.GET.get("hub.mode")
+    token = request.GET.get("hub.verify_token")
+    challenge = request.GET.get("hub.challenge")
 
-        print("MODE:", mode)
-        print("TOKEN:", token)
-        print("CHALLENGE:", challenge)
+    VERIFY_TOKEN = "insta123"
 
-        if mode == "subscribe" and token == VERIFY_TOKEN:
-            return HttpResponse(challenge)
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        return HttpResponse(challenge)
 
-        if request.headers.get("User-Agent", "").startswith("facebookexternalhit") and challenge:
-            return HttpResponse(challenge)
-
-        return HttpResponse("Verification failed", status=403)
-
-    elif request.method == "POST":
-        print("Webhook event received:", request.body)
-        return HttpResponse("EVENT_RECEIVED")
-
-    return HttpResponse("OK")
+    return HttpResponse("Forbidden", status=403)
