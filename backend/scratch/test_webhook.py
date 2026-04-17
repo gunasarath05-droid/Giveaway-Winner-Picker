@@ -1,6 +1,6 @@
 import requests
 
-url = "https://your-deployment-domain.com/api/webhook/"
+url = "https://giveaway-winner-picker.vercel.app/api/webhook/"
 params = {
     "hub.mode": "subscribe",
     "hub.verify_token": "insta123",
