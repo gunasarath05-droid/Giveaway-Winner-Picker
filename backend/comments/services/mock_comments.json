@@ -1,0 +1,62 @@
+[
+    {
+        "username": "photography_lover",
+        "comment": "Absolutely stunning shot! The composition is just perfect. 😍",
+        "likes": 42
+    },
+    {
+        "username": "travel_bug",
+        "comment": "Wow, this place looks magical. Adding it to my bucket list! ✨",
+        "likes": 28
+    },
+    {
+        "username": "art_critic_99",
+        "comment": "The lighting here is incredible. Great work on the post-processing. 🔥",
+        "likes": 15
+    },
+    {
+        "username": "daily_inspiration",
+        "comment": "Thanks for sharing this, really brightened my day! ❤️",
+        "likes": 56
+    },
+    {
+        "username": "random_user_123",
+        "comment": "Amazing! Best photo I've seen today. 📸",
+        "likes": 10
+    },
+    {
+        "username": "tech_enthusiast",
+        "comment": "What camera did you use for this? The detail is breathtaking. 🎨",
+        "likes": 22
+    },
+    {
+        "username": "nature_seeker",
+        "comment": "So beautiful and calm. Love the vibes! 🌊",
+        "likes": 34
+    },
+    {
+        "username": "creative_mind",
+        "comment": "This is pure art. Well done! ⚡",
+        "likes": 19
+    },
+    {
+        "username": "sunshine_girl",
+        "comment": "Beautiful! ☀️",
+        "likes": 102
+    },
+    {
+        "username": "urban_explorer",
+        "comment": "Great perspective! Love how you captured the scale. 🙌",
+        "likes": 7
+    },
+    {
+        "username": "minimalist_soul",
+        "comment": "Simple yet so powerful. Love your style.",
+        "likes": 14
+    },
+    {
+        "username": "vibrant_posts",
+        "comment": "The colors are popping! So good. 🌈",
+        "likes": 31
+    }
+]
