@@ -7,5 +7,5 @@ tzdata==2026.1
 python-dotenv
 requests
 gunicorn
-django-jazmin
+django-jazzmin
 whitenoise

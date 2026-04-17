@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazmin',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-JAZMIN_SETTINGS = {
+JAZZMIN_SETTINGS = {
     "site_title": "Giveaway Admin",
     "site_header": "Giveaway Picker",
     "site_brand": "ReelAnalyzer",
