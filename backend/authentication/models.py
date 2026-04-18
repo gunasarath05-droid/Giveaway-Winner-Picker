@@ -1,7 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django_mongodb_backend.fields import ObjectIdAutoField
+
+
+class User(AbstractUser):
+    id = ObjectIdAutoField(primary_key=True)
+
 
 class InstagramProfile(models.Model):
+    id = ObjectIdAutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='instagram_profile')
     instagram_user_id = models.CharField(max_length=255, unique=True)
     username = models.CharField(max_length=255)

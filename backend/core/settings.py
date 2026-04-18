@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'authentication',
+    'authentication.apps.AuthenticationConfig',
     'reels',
     'comments',
     'analysis',
@@ -84,14 +84,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(BASE_DIR / '.env')
+
+MONGODB_URI = os.getenv('MONGODB_URI')
+if not MONGODB_URI:
+    raise ValueError("MONGODB_URI environment variable is not set. Check your .env file.")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django_mongodb_backend',
+        'NAME': 'giveaway_db',
+        'HOST': MONGODB_URI,
+        'CONN_MAX_AGE': 600,
     }
 }
+
 
 
 
@@ -136,7 +143,20 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django_mongodb_backend.fields.ObjectIdAutoField'
+
+AUTH_USER_MODEL = 'authentication.User'
+
+SILENCED_SYSTEM_CHECKS = ['models.W042', 'fields.W042', 'mongodb.E001']
+
+# Disable Django built-in app migrations — they use integer AutoField which
+# conflicts with MongoDB ObjectId during post_migrate permission creation.
+MIGRATION_MODULES = {
+    'contenttypes': None,
+    'auth': None,
+    'admin': None,
+    'sessions': None,
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 APPEND_SLASH = False

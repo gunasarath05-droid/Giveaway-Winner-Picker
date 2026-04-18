@@ -9,3 +9,5 @@ requests
 gunicorn
 django-jazzmin
 whitenoise
+django-mongodb-backend
+pymongo[srv]
