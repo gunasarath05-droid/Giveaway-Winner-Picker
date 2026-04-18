@@ -9,5 +9,5 @@ requests
 gunicorn
 django-jazzmin
 whitenoise
-django-mongodb-backend
-pymongo[srv]
+django-mongodb-backend==6.0.3
+pymongo[srv]>=4.7.0,<4.8.0
