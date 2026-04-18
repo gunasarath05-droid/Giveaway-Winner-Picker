@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
+# MONKEY-PATCH: Fix compatibility issue between django_mongodb_backend 6.0.2+ and pymongo 4.7+
+# where the backend tries to access the removed `_options` attribute.
+import pymongo
+if not hasattr(pymongo.MongoClient, '_options'):
+    pymongo.MongoClient._options = property(lambda self: self.options)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
